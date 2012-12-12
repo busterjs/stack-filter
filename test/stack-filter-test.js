@@ -66,21 +66,36 @@
 
         "removes lines matching entries in filters array": function () {
             stackFilter.filters = ["bundle-0.1.0"];
-            var stack = stackFilter(this.stack).join("\n");
+            var stack = stackFilter.filter(this.stack).join("\n");
+
+            refute.match(stack, /bundle/);
+        },
+
+        "removes lines matching entries in custom filters array": function () {
+            var filter = stackFilter.configure({ filters: ["bundle-0.1.0"] });
+            var stack = filter.filter(this.stack).join("\n");
 
             refute.match(stack, /bundle/);
         },
 
         "removes cwd from paths": function () {
             var url = "http://localhost:1111/sessions/1/resources";
-            var stack = stackFilter(this.stack, url).join("\n");
+            var stack = stackFilter.filter(this.stack, url).join("\n");
+
+            assert.match(stack, /\(-9\)@\.\/buster\/bundle-0.1.0/m);
+        },
+
+        "removes cwd from paths with configured cwd": function () {
+            var url = "http://localhost:1111/sessions/1/resources";
+            var filter = stackFilter.configure({ cwd: url });
+            var stack = filter.filter(this.stack).join("\n");
 
             assert.match(stack, /\(-9\)@\.\/buster\/bundle-0.1.0/m);
         },
 
         "removes regexp cwd from paths": function () {
             var pattern = /http:\/\/[^:]+:1111\/sessions\/1\/resources/;
-            var stack = stackFilter(this.stack, pattern).join("\n");
+            var stack = stackFilter.filter(this.stack, pattern).join("\n");
 
             assert.match(stack, /\(-9\)@\.\/buster\/bundle-0.1.0/m);
         },
@@ -99,7 +114,7 @@
                 'at Function._load (module.js:297:12)'
             ];
 
-            assert.equals(stackFilter(this.nodeStack, cwd), expected);
+            assert.equals(stackFilter.filter(this.nodeStack, cwd), expected);
         },
 
         "processes firefox stack": function () {
@@ -107,7 +122,7 @@
             var cwd = "http://localhost:1111/sessions/1/resources";
             var expected = ['((void 0))@./my-test.js:7'];
 
-            assert.equals(stackFilter(this.stack, cwd), expected);
+            assert.equals(stackFilter.filter(this.stack, cwd), expected);
         }
     });
 });
