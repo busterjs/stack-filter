@@ -123,6 +123,24 @@
             var expected = ['((void 0))@./my-test.js:7'];
 
             assert.equals(stackFilter.filter(this.stack, cwd), expected);
+        },
+
+        "filters stack traces on Windows": function () {
+            var stack = "AssertionError: Expected a to be equal to b\n" +
+                    "    at Object.helper.testCase.filters stack trace (C:\\busterjs\\buster-test\\test\\reporters\\brief-test.js:512:21)\n" +
+                    "    at runTest (C:\\busterjs\\buster-test\\test\\test-helper.js:41:22)\n" +
+                    "    at runNext (C:\\busterjs\\buster-test\\test\\test-helper.js:83:13)\n" +
+                    "    at testCases (C:\\busterjs\\buster-test\\test\\test-helper.js:86:17)\n" +
+                    "    at doComplete (C:\\busterjs\\buster-test\\test\\test-helper.js:25:17)\n" +
+                    "    at complete (C:\\busterjs\\buster-test\\test\\test-helper.js:33:13)\n" +
+                    "    at runTest (C:\\busterjs\\buster-test\\test\\test-helper.js:42:17)\n" +
+                    "    at runNext (C:\\busterjs\\buster-test\\test\\test-helper.js:83:13)\n" +
+                    "    at testCases (C:\\busterjs\\buster-test\\test\\test-helper.js:86:17)\n" +
+                    "    at doComplete (C:\\busterjs\\buster-test\\test\\test-helper.js:25:17)";
+
+            stackFilter.filters = ["C:\\busterjs\\buster-test\\test"];
+
+            assert.equals(stackFilter.filter(stack), []);
         }
     });
 });
