@@ -1,6 +1,6 @@
 {
     "name": "stack-filter",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "description": "Cleaner and more readable stack traces for all",
     "homepage": "http://busterjs.org/docs/stack-filter",
     "author": "Christian Johansen",
