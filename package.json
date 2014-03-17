@@ -15,9 +15,10 @@
         "url": "https://github.com/busterjs/stack-filter"
     },
     "scripts": {
-        "test": "./node_modules/buster/bin/buster-test"
+        "test": "node node_modules/buster/bin/buster-test",
+        "test-debug": "node --debug-brk node_modules/buster/bin/buster-test"
     },
     "devDependencies": {
-        "buster": "0.6.11"
+        "buster": "*"
     }
 }
