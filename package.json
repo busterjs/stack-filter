@@ -1,25 +1,27 @@
 {
-    "name": "stack-filter",
-    "version": "1.0.0",
-    "description": "Cleaner and more readable stack traces for all",
-    "homepage": "http://busterjs.org/docs/stack-filter",
-    "author": "Christian Johansen",
-    "contributors": [{
-        "name": "Christian Johansen",
-        "email": "christian@cjohansen.no",
-        "url": "http://cjohansen.no"
-    }],
-    "license": "BSD-3-Clause",
-    "main": "./lib/stack-filter",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/busterjs/stack-filter"
-    },
-    "scripts": {
-        "test": "node node_modules/buster/bin/buster-test",
-        "test-debug": "node --debug-brk node_modules/buster/bin/buster-test"
-    },
-    "devDependencies": {
-        "buster": "0.7.x"
+  "name": "stack-filter",
+  "version": "1.0.1",
+  "description": "Cleaner and more readable stack traces for all",
+  "homepage": "http://busterjs.org/docs/stack-filter",
+  "author": "Christian Johansen",
+  "contributors": [
+    {
+      "name": "Christian Johansen",
+      "email": "christian@cjohansen.no",
+      "url": "http://cjohansen.no"
     }
+  ],
+  "license": "BSD-3-Clause",
+  "main": "./lib/stack-filter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/busterjs/stack-filter"
+  },
+  "scripts": {
+    "test": "node node_modules/buster/bin/buster-test",
+    "test-debug": "node --debug-brk node_modules/buster/bin/buster-test"
+  },
+  "devDependencies": {
+    "buster": "0.7.x"
+  }
 }
